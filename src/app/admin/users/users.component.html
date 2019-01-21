@@ -1,0 +1,87 @@
+  <div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>Add Users
+    </div>
+    <div class="card-body">
+     <div class="row">
+       <div class="col-md-5">
+         <div class="card">
+           <div class="card-header">
+             Add User
+           </div>
+           <div class="card-body">
+             <form  name="adduserForm" #adduserForm="ngForm" (ngSubmit)="addUser(adduserForm.value)">
+               <div class="form-group">
+                 <label>Username *</label>
+                 <input type="text" name="username" #username="ngModel" ngModel placeholder="@Username" class="form-control">
+               </div>
+               <div class="form-group">
+                 <label>Email *</label>
+                 <input type="text" name="email" #email="ngModel" ngModel placeholder="test@gmail.com" class="form-control">
+               </div>
+               <div class="form-group">
+                  <label>Password * </label>
+                  <input type="password" name="password" #password="ngModel" ngModel placeholder="* * * * * *" class="form-control">
+                </div>
+                <div class="form-group">
+                  <select class="form-control" name="role" #role="ngModel" ngModel>
+                    <option value="" disabled>Select</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                  </select>
+                </div>
+                <button class="btn btn-{{theme.btnColor}}">Save</button>
+             </form>
+           </div>
+         </div>
+       </div>
+       <div class="col-md-7">
+         <div class="card">
+           <div class="card-header">
+             Users List *
+           </div>
+           <div class="card-body">
+              <div class="table-responsive">
+                  <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                      <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                          <label>Show 
+                            <select name="dataTable_length" name="role1" #role1="ngModel" ngModel (change)="findrole(role1.value)"  class="custom-select custom-select-sm form-control form-control-sm">
+                              <option value="" disabled>Select</option>
+                              <option value="admin">Admin</option>
+                              <option value="user">Users</option>
+                            </select> entries</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table class="table table-bordered dataTable"  width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                    <thead>
+                      <tr role="row">
+                        <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 178px;">Name</th>
+                        <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 295px;">Email</th>
+                        <th tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 127px;">Password</th>
+                        <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px;">Role</th>
+                        <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 127px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>                   
+                        <tr role="row" *ngFor="let user of finduser" class="odd">
+                            <td >{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.password}}</td>
+                            <td>{{user.role}}</td>
+                            <td (click)="deleteUser(user)" class="text-center"><i style="color:red" class="fas fa-trash"></i></td>
+                          </tr>
+                    </tbody>
+                  </table></div></div>
+                 </div>
+                </div>
+           </div>
+         </div>
+       </div>
+     </div>
+    </div>
+  </div>

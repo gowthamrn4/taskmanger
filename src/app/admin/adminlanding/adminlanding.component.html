@@ -1,0 +1,208 @@
+<div class="Mysection">
+ 
+
+
+
+  <body id="page-top" >
+
+    <nav class="navbar navbar-expand navbar-dark bg-{{theme.header_color}} static-top">
+
+      <a class="navbar-brand mr-1" href="index.html">Task Manager Admin</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-{{theme.header_color}}"  type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto  ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="badge badge-{{theme.header_color}}">{{online.length}}</span>
+            <i class="fas fa-globe fa-fw"></i>
+
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            <div class="test" *ngFor="let user of online">
+               <a class="dropdown-item" routerLink="/admin/message/{{user._id}}"><i id="onlineIcon" class="fas fa-globe"> {{user.username}}</i></a> 
+
+            </div>
+
+          </div>
+        </li>
+        <li class="nav-item dropdown  no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span class="badge badge-{{theme.header_color}}" >7</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Activity Log</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()" >Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+
+      <ul class="sidebar navbar-nav bg-{{theme.aside_color}}">
+        <div class="card text-white bg-{{theme.header_color}} side-card o-hidden" >
+            <div class="card-body">
+              <div class="card-body-icon">
+                  <i class="fas fa-fw fa-list"></i>
+                </div>
+              <div class="img text-center">
+                <img src="../../../assets/img/admin.png" class="img-responsive" width="100">
+              </div>
+            </div>
+            <a class="card-footer text-center text-white clearfix small z-1">
+              <span class="text-center">{{session.username}}</span>
+            </a>
+          </div>
+        <h5 class="text-center"></h5>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/admin">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/task">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Task</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/users">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Users</span></a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-fw fa-folder"></i>
+              <span>Change Theme</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+              <div class="row">
+               <form name="themeForm" #themeForm="ngForm" (ngSubmit)="changeTheme(themeForm.value)" style="padding:10px">
+                <div class="col-md-12">
+                    <select class="form-control" name="header_color" #header_color="ngModel" ngModel>
+                        <option value="" disabled>Select Header Theme</option>
+                        <option value="danger">Red</option>
+                        <option value="primary">Blue</option>
+                        <option value="warning">Orange</option>
+                        <option value="success">Green</option>
+                      </select><br>
+                </div>
+                <div class="col-md-12">
+                    <select class="form-control" name="aside_color" #aside_color="ngModel" ngModel>
+                        <option value="" disabled>Select Side Bar Theme</option>
+                        <option value="danger">Red</option>
+                        <option value="primary">Blue</option>
+                        <option value="warning">Orange</option>
+                        <option value="success">Green</option>
+                        <option value="">No Theme</option>
+                      </select><br>
+                </div>
+                <div class="12" style="padding:10px;">
+                    <button class="btn btn-sm">Set Theme</button>
+                </div>
+              </form>
+            </div>         
+            </div>
+          </li>
+      </ul>
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+          </ol>
+
+         
+         
+
+        </div>
+        <!-- /.container-fluid -->
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Your Website 2018</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+  
+
+  </body>
+
+
+</div>

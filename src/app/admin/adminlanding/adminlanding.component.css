@@ -1,0 +1,19 @@
+.Mysection{
+    background: linear-gradient(to bottom, #FFB88C, #DE6262);  
+}
+.container{
+    margin-top:5px;
+}
+.sidebar{
+    background: #DE6262
+}
+.navbar,.side-card{
+    background: #dc3545
+}
+#onlineIcon{
+    color: green
+}
+.badge{
+    width:30px;
+    font-size:20px;
+}

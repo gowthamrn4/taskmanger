@@ -1,0 +1,50 @@
+<div class="task">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          Add Task
+        </div>
+        <div class="card-body">
+          <form name="task" #task="ngForm" (ngSubmit)="addTask(task.value)">
+             <label> Task Name</label>
+               <input type="text" name="taskName" class="form-control" #taskName="ngModel" ngModel >
+               <br>
+               <label>Inchrage Name</label>
+               <input type="text" name="inchargeName" class="form-control" #inchargeName="ngModel" ngModel>
+               <br>
+               <label>Theme</label>
+               <select class="form-control" name="theme" #theme="ngModel" ngModel>
+                 <option value="" disabled>Select</option>
+                 <option value="danger">Red</option>
+                 <option value="primary">Blue</option>
+                 <option value="warning">Orange</option>
+                 <option value="success">Green</option>
+               </select><br>
+               <button class="btn btn-{{theme.btnColor}}">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <table class="table table-bordered dataTable"  width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+            <thead>
+              <tr role="row">
+                <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 178px;">#</th>
+                <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 295px;">Task</th>
+                <th tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 127px;">Inchrage</th>
+                <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 127px;">Action</th>
+              </tr>
+            </thead>
+            <tbody>                   
+                <tr role="row" *ngFor="let user of getTask;let i=index" class="odd">
+                    <td >{{i+1}}</td>
+                    <td>{{user.taskName}}</td>
+                    <td>{{user.inchargeName}}</td>
+                    <td (click)="deleteTask(user)" class="text-center"><i class="fas fa-trash bg-{{theme.btnColor}}"></i></td>
+                  </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>

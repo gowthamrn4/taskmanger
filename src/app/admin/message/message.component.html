@@ -1,0 +1,97 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-5">
+        <div class="message">
+            <form name="messageForm" #messageForm="ngForm" (ngSubmit)="sendMessage(messageForm.value)">
+              <div class="row">
+                <div class="col-md-5">
+                  <label>To</label>
+                  <input type="text" name="usernameTo" #usernameTo="ngModel" ngModel [(ngModel)]="createMessage.usernameTo"> 
+                  <label>Message</label>
+                  <textarea class="form-control" name="message" #message="ngModel" ngModel [(ngModel)]="createMessage.message"></textarea>
+                 </div>
+                 <button class="btn btn-sm">save</button>
+              </div>
+            </form>
+          </div>
+       </div>
+       <div class="col-md-5">
+         <div class="card">
+           <div class="card-header">
+             Message
+           </div>
+           <div class="card-body">
+             <div *ngFor="let umsg of getUserMsg">
+               <tr  *ngFor="let frommsg of getFromMsg">
+               <p>{{umsg.message}}<br></p><p>{{frommsg.message}}</p>
+             </tr>
+            </div>
+           </div>
+         </div>
+       </div>
+    </div>
+  </div> -->
+
+
+
+
+
+
+      <div class="messaging">
+            <div class="inbox_msg">
+              <div class="inbox_people">
+                <div class="headind_srch">
+                  <div class="recent_heading">
+                    <h4>Recent</h4>
+                  </div>
+                  <div class="srch_bar">
+                    <div class="stylish-input-group">
+                      <input type="text" class="search-bar"  placeholder="Search" >
+                      <span class="input-group-addon">
+                      <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                      </span> </div>
+                  </div>
+                </div>
+                <div class="inbox_chat">
+                  <div class="chat_list active_chat" *ngFor="let user of online">
+                    <div class="chat_people" routerLink="/admin/message/{{user._id}}">
+                      <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                      <div class="chat_ib">
+                        <h5>{{user.username}} <span class="chat_date">Dec 25</span></h5>
+                        <p>Test, which is a new approach to have all solutions 
+                          astrology under one roof.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mesgs">
+                <div class="msg_history">
+                  <div class="incoming_msg">
+                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="received_msg">
+                      <div class="received_withd_msg" *ngFor="let umsg of bindFMsg">
+                        <p>{{umsg.text}}</p>
+                        <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                    </div>
+                  </div>
+                  <div class="outgoing_msg" *ngFor="let umsg of bindMsg">
+                    <div class="sent_msg">
+                      <p>{{umsg.text}}</p>
+                      <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                  </div>
+                </div>
+                <form name="messageForm" #messageForm="ngForm" (ngSubmit)="sendMessage(messageForm.value)">
+                <div class="type_msg">
+                  <div class="input_msg_write">
+                    <input type="text" name="text" #text="ngModel" ngModel [(ngModel)]="createMessage.message.text" class="write_msg" placeholder="Type a message" />
+                    <button class="msg_send_btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+            
+                    
+          </div>
+  

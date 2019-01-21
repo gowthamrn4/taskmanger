@@ -1,0 +1,14 @@
+.img span{
+    text-align: justify;
+    text-justify: inter-word;
+}
+.online{
+    position: fixed;
+    bottom:0px;
+    right:2px;
+    z-index:1;
+}
+.online span{
+    text-align: justify;
+  text-justify: inter-word;
+}
